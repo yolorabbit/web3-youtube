@@ -1,4 +1,4 @@
-# Sample Hardhat Project
+# Web3 Youtube
 
 This is a decentralized youtube
 
