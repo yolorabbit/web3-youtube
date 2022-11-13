@@ -28,9 +28,11 @@ Front-end
 ```
 
 5. Deploy the contract
-   ```sh
-     npx hardhat run scripts/deploy.js --network mumbai
-   ```
+
+```sh
+  npx hardhat run scripts/deploy.js --network mumbai
+```
+
 6. Add your contract address in constants
 
-Obs: If you want to deploy your on subgraph fell free, but I have already deployed one.
+Obs: If you want to deploy your own subgraph fell free, but I have already deployed one.
