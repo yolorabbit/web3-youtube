@@ -1,5 +1,5 @@
 import React from "react";
-import { useAsset } from "@livepeer/react";
+
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
 

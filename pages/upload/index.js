@@ -3,6 +3,7 @@ import Link from "next/link";
 import { BiCloud, BiPlus } from "react-icons/bi";
 import { create } from "ipfs-http-client";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { getContract } from "../../utils";
 
@@ -37,6 +38,34 @@ export default function Upload() {
     },
   });
 
+  const uploadVideo = async (thumbnail) => {
+    try {
+      // Uploading the video to IPFS
+      const added = await client.add(video);
+      // Getting the hash of the uploaded video and passing both video and thumbnail to the saveVideo function
+      await saveVideo(added.path, thumbnail);
+    } catch (error) {
+      setLoading(false);
+      console.log("Error uploading file: ", error);
+    }
+  };
+
+  const uploadThumbnail = useCallback(
+    async (thumbnail) => {
+      setLoading(true);
+      try {
+        // Uploading the thumbnail to IPFS
+        const added = await client.add(thumbnail);
+        // Getting the hash of the uploaded thumbnail and passing it to the uploadVideo function
+        uploadVideo(added.path);
+      } catch (error) {
+        setLoading(false);
+        console.log("Error uploading file: ", error);
+      }
+    },
+    [client, uploadVideo]
+  );
+
   const handleSubmit = useCallback(async () => {
     if (
       title === "" ||
@@ -51,32 +80,15 @@ export default function Upload() {
     }
 
     uploadThumbnail(thumbnail);
-  }, [title, description, category, location, thumbnail, video]);
-
-  const uploadThumbnail = async (thumbnail) => {
-    setLoading(true);
-    try {
-      // Uploading the thumbnail to IPFS
-      const added = await client.add(thumbnail);
-      // Getting the hash of the uploaded thumbnail and passing it to the uploadVideo function
-      uploadVideo(added.path);
-    } catch (error) {
-      setLoading(false);
-      console.log("Error uploading file: ", error);
-    }
-  };
-
-  const uploadVideo = async (thumbnail) => {
-    try {
-      // Uploading the video to IPFS
-      const added = await client.add(video);
-      // Getting the hash of the uploaded video and passing both video and thumbnail to the saveVideo function
-      await saveVideo(added.path, thumbnail);
-    } catch (error) {
-      setLoading(false);
-      console.log("Error uploading file: ", error);
-    }
-  };
+  }, [
+    title,
+    description,
+    category,
+    location,
+    thumbnail,
+    video,
+    uploadThumbnail,
+  ]);
 
   const saveVideo = async (video, thumbnail) => {
     // Get the contract from the getContract function
@@ -195,7 +207,7 @@ export default function Upload() {
               className="border-2 w-64 border-gray-600  border-dashed rounded-md mt-2 p-2  h-36 items-center justify-center flex"
             >
               {thumbnail ? (
-                <img
+                <Image
                   onClick={() => {
                     thumbnailRef.current.click();
                   }}

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useApolloClient, gql } from "@apollo/client";
 import { useRouter } from "next/router";
 
@@ -41,7 +41,7 @@ export default function Main() {
     }
   `;
 
-  const getVideos = async () => {
+  const getVideos = useCallback(() => {
     client
       .query({
         query: GET_VIDEOS,
@@ -65,11 +65,11 @@ export default function Main() {
       .catch((err) => {
         alert("Something went wrong. please try again.!", err.message);
       });
-  };
+  }, [GET_VIDEOS, client, search]);
 
   useEffect(() => {
     getVideos();
-  }, [search]);
+  }, [search, getVideos]);
 
   return (
     <div className="w-full bg-[#1a1c1f] flex flex-row">
@@ -80,8 +80,9 @@ export default function Main() {
           }}
         />
         <div className="flex flex-row flex-wrap">
-          {videos.map((video) => (
+          {videos.map((video, index) => (
             <div
+              key={index}
               className="w-80"
               onClick={() => {
                 router.push(`/video?id=${video.id}`);

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { useApolloClient, gql } from "@apollo/client";
 
 import Video from "../../components/Video";
@@ -50,7 +50,7 @@ export default function VideoPage() {
     }
   `;
 
-  const getRelatedVideos = () => {
+  const getRelatedVideos = useCallback(() => {
     client
       .query({
         query: GET_VIDEOS,
@@ -74,11 +74,11 @@ export default function VideoPage() {
       .catch((err) => {
         console.log("Something went wrong. please try again.!", err.message);
       });
-  };
+  }, [GET_VIDEOS, client]);
 
   useEffect(() => {
     getRelatedVideos();
-  }, []);
+  }, [getRelatedVideos]);
 
   return (
     <div className="w-full bg-[#1a1c1f] flex flex-row">

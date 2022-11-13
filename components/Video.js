@@ -1,11 +1,12 @@
 import React from "react";
 import { BiCheck } from "react-icons/bi";
 import moment from "moment";
+import Image from "next/image";
 
 export default function Video({ video }) {
   return (
     <div className={"flex flex-col m-5 cursor-pointer"}>
-      <img
+      <Image
         className={"object-cover rounded-lg w-full h-40"}
         src={`https://ipfs.io/ipfs/${video.thumbnailHash}`}
         alt=""
