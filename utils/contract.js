@@ -1,4 +1,4 @@
-import ContractAbi from "../artifacts/contracts/YouTube.sol/YouTube.json";
+import ContractAbi from "../artifacts/contracts/Youtube.sol/YouTube.json";
 import { ethers } from "ethers";
 import { CONTRACT_ADDRESS } from "../constants";
 
