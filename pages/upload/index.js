@@ -3,7 +3,6 @@ import Link from "next/link";
 import { BiCloud, BiPlus } from "react-icons/bi";
 import { create } from "ipfs-http-client";
 import { useRouter } from "next/router";
-import Image from "next/image";
 
 import { getContract } from "../../utils";
 
@@ -207,7 +206,7 @@ export default function Upload() {
               className="border-2 w-64 border-gray-600  border-dashed rounded-md mt-2 p-2  h-36 items-center justify-center flex"
             >
               {thumbnail ? (
-                <Image
+                <img
                   onClick={() => {
                     thumbnailRef.current.click();
                   }}
