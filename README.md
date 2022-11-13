@@ -2,6 +2,8 @@
 
 This is a decentralized youtube
 
+You can upload and watch descentralized videos!
+
 This project was built with:
 
 - Frontend framework: Next.js
