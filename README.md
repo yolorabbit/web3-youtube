@@ -4,6 +4,8 @@ This is a decentralized youtube
 
 You can upload and watch descentralized videos!
 
+Obs: We are using mumbai testnet on this project, but you can always change.
+
 This project was built with:
 
 - Frontend framework: Next.js
