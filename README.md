@@ -4,7 +4,9 @@ This is a decentralized youtube
 
 You can upload and watch descentralized videos!
 
-Obs: We are using mumbai testnet on this project, but you can always change.
+Website: https://0xyoutube.vercel.app/
+
+Obs: We are using mumbai testnet on this project.
 
 This project was built with:
 
