@@ -6,7 +6,7 @@ You can upload and watch descentralized videos!
 
 Website: https://0xyoutube.vercel.app/
 
-Obs: We are using mumbai testnet on this project.
+Obs: We are using amoy testnet on this project.
 
 This project was built with:
 
